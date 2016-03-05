@@ -1,0 +1,72 @@
+#filters {
+	display: block;
+	height: 25px;
+	margin-top: 10px;
+	padding: 0px 5px 10px 5px;
+	box-sizing: border-box;
+}
+
+.left-block {
+	float: left;
+	width: auto;
+}
+
+form {
+	margin: 0px;
+	background-color: #e6e6e6;
+}
+
+form button {
+	float: left;
+	background-color: #e6e6e6;
+	padding: 5px 15px 5px 15px;
+	margin: 0px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-right: none;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+form button.selected {
+	background-color: #f5f5f5;
+	border-bottom: 1px solid #f5f5f5;
+}
+
+form button:hover {
+	background-color: #f5f5f5;
+}
+
+form button:last-child {
+	border-right: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.right-block {
+	display: block;
+	height: 25px;
+	box-sizing: border-box;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.right-block .add-button {
+	height: 22px;
+	background-color: #207ea9;
+	border: 1px solid #fff;
+	border-radius: 2px;
+	float: right;
+	box-sizing: border-box;
+	padding: 3px 10px 3px 10px;
+}
+
+.right-block .add-button:hover {
+	background-color: #045184;
+}
+
+.right-block .add-button a {
+	text-decoration: none;
+}
+
+.right-block .add-button a .add-text {
+	float: right;
+	font-size: 12px;
+	color: #bae9ff;
+}
