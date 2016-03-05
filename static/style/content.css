@@ -1,5 +1,5 @@
 #content {
-	padding: 0px 5px 0px 5px;
+	padding: 0 5px 0 5px;
 }
 
 .tab {
@@ -11,15 +11,16 @@
 }
 
 table {
+	width: 100%;
 	background: #569cbd;
 	border-spacing: 1px;
-	width: 100%;
 	font-size: 12px;	
 }
 
 th {
 	background: #207ea9;
 	color: #bae9ff;
+	padding: 3px;
 }
 
 tr.even {
@@ -33,4 +34,5 @@ tr.odd {
 tr td {
 	background-color: inherit;
 	text-align: center;
+	padding: 3px;
 }

@@ -7,7 +7,7 @@ html {
 
 body {
 	width: 70%;
-	min-width: 480px;
+	min-width: 720px;
 	min-height: 100%;
     position: relative;
 	box-shadow: 0 0 2px rgba(0,0,0,0.2);
@@ -59,4 +59,13 @@ nav a:hover, a.last:hover {
 	box-sizing: border-box;
 	padding: 5px;
 	color: #bae9ff;
-} 
+}
+
+#footer .left-block {
+	float: left;
+}
+
+#footer .right-block {
+	float: right;
+}
+
