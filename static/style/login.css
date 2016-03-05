@@ -1,11 +1,16 @@
-body {
+html, body {
+    height: 100%;
 	width: 100%;
 	background: linear-gradient(to top, #013a33, #0ffade);
+    margin: 0;
 }
 
 #wrapper {
 	width: 240px;
 	margin: 0 auto;
+    min-height: 100%;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .clear-block {
@@ -60,7 +65,18 @@ input[type="submit"]:active {
 	cursor: pointer;
 }
 
-p {
+#footer {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	left:0;
+	bottom: 0;
+	box-sizing: border-box;
+	padding: 5px;
+	color: #bae9ff;
+}
+
+#footer p {
 	text-align: center;
 	opacity: 0.97;
 	color: #ffffff;
