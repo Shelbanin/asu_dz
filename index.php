@@ -9,10 +9,10 @@
 	</head>
 	<body>
 		<?php
-			include("navigation/menu.html");
-			include("navigation/order_filters.html");
-			include("content/orders.php");
-			include("navigation/footer.html");
+			include("navigation/menu.php");
+			include("navigation/orders_filters.php");
+			include("content/orders/orders.php");
+			include("navigation/footer.php");
 		?>
 	</body>
 </html>
