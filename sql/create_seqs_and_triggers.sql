@@ -16,11 +16,11 @@ PROMT Создание триггера для ACCOUNT.ACC_ID;
 CREATE OR REPLACE TRIGGER "ASU_USER"."T_ACC_ID" 
 	BEFORE INSERT ON "ASU_USER"."ACCOUNTS" 
     FOR EACH ROW 
-BEGIN
-	SELECT s_acc_id.nextval
-		INTO :new.acc_id
-		FROM DUAL;
-END;
+	BEGIN
+		SELECT s_acc_id.nextval
+			INTO :new.acc_id
+			FROM DUAL;
+	END;
 PROMT Создание триггера успешно завершено;
 	
 	
@@ -36,11 +36,11 @@ PROMT Создание триггера для ACCOUNT.USER_ID;
 CREATE OR REPLACE TRIGGER "ASU_USER"."T_USER_ID" 
 	BEFORE INSERT ON "ASU_USER"."USERS" 
 	FOR EACH ROW 
-BEGIN
-	SELECT s_user_id.nextval
-		INTO :new.user_id
-		FROM DUAL;
-END;
+	BEGIN
+		SELECT s_user_id.nextval
+			INTO :new.user_id
+			FROM DUAL;
+	END;
 PROMT Создание триггера успешно завершено;	
 	
 	
