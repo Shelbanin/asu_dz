@@ -1,4 +1,4 @@
-﻿SPOOL create_tables.lst;
+﻿SPOOL create_forign_keys.lst;
 PROMT Автор: Щелбанин Александр ВЛадимирович;
 PROMT Группа: ИУ4-83;
 PROMT Создание вторичных ключей БД для АСУ ТП изготовления RR-701-R-T;
