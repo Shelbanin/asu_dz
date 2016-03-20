@@ -24,7 +24,7 @@ END;
 PROMT Создание триггера успешно завершено;
 	
 	
-PROMT Создание последовательности для ACCOUNT.ACC_ID;
+PROMT Создание последовательности для ACCOUNT.USER_ID;
 DROP SEQUENCE "ASU_USER"."S_USER_ID" ;
 CREATE SEQUENCE "ASU_USER"."S_USER_ID" 
 	INCREMENT BY 1 START WITH 1
@@ -32,7 +32,7 @@ CREATE SEQUENCE "ASU_USER"."S_USER_ID"
 	NOCACHE NOORDER;
 PROMT Создание последовательности успешно завершено;
 
-PROMT Создание триггера для ACCOUNT.ACC_ID;
+PROMT Создание триггера для ACCOUNT.USER_ID;
 CREATE OR REPLACE TRIGGER "ASU_USER"."T_USER_ID" 
 	BEFORE INSERT ON "ASU_USER"."USERS" 
 	FOR EACH ROW 
