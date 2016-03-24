@@ -9,7 +9,7 @@
 	<body>
 		<div id="wrapper">
 			<div class="clear-block"></div>
-			<form action="login.php">
+			<form action="login_page.php">
 				<input  type="email" name="login" required onClick="clearField(this)" onBlur="cursorLeft(this)" value="Логин">
 				<input type="password" name="password" required onClick="clearField(this)" onBlur="cursorLeft(this)" value="Пароль">
 				<input type="submit" value="">
