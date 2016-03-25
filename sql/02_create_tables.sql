@@ -27,6 +27,14 @@ CREATE TABLE ASU_USER.ACCOUNTS (
 	) TABLESPACE USERS;
 PROMPT Создание таблицы успешно завершено;
 
+PROMPT Создание таблицы, содержащую роли системы;
+DROP TABLE ASU_USER.ROLES;
+CREATE TABLE ASU_USER.ROLES (
+	ROLE_ID NUMBER(10) NOT NULL,
+	ROLE_NAME VARCHAR2(20) NOT NULL
+) TABLESPACE USERS;
+PROMPT Создание таблицы успешно завершено;
+
 
 PROMPT Работа скрипта успешно завершена;
 SPOOL OFF;

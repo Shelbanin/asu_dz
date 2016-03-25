@@ -75,10 +75,11 @@ INSERT INTO ACCOUNTS (
 	)
 	VALUES (
 		'admin',
-		'handover',
+		'admin',
 		'1',
 		s_user_id.currval
 	);
 
+COMMIT;
 PROMPT Работа скрипта успешно завершена;
 SPOOL OFF;
