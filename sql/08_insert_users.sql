@@ -3,7 +3,8 @@ PROMPT Автор: Щелбанин Александр Владимирович;
 PROMPT Группа: ИУ4-83;
 PROMPT Заполнение таблиц пользователей АСУ ТП изготовления RR-701-R-T;
 
-INSERT INTO USERS (
+
+INSERT INTO ASU_USER.USERS (
 		USER_NAME,
 		USER_SURNAME,
 		USER_SECNAME,
@@ -16,7 +17,7 @@ INSERT INTO USERS (
 		'8-916-451-96-73'
 	);
 	
-INSERT INTO ACCOUNTS (
+INSERT INTO ASU_USER.ACCOUNTS (
 		ACC_LOGIN,
 		ACC_PASSWORD,
 		ACC_ROLE,
@@ -24,50 +25,25 @@ INSERT INTO ACCOUNTS (
 	)
 	VALUES (
 		'shelbanin',
-		'handover',
-		'1',
-		s_user_id.currval
+		'7175b6245fadd2ec63caccd40d2ec369',
+		'2',
+    asu_user.s_user_id.currval
 	);
-
 	
-INSERT INTO USERS (
+INSERT INTO ASU_USER.USERS (
 		USER_NAME,
 		USER_SURNAME,
 		USER_SECNAME,
 		USER_PHONE
 	)
 	VALUES (
-		'Евгения',
-		'Сидорова',
-		'Петровна',
-		'8-916-375-62-58'
-	);
-	
-INSERT INTO ACCOUNTS (
-		ACC_LOGIN,
-		ACC_PASSWORD,
-		ACC_INFO
-	)
-	VALUES (
-		'sidorova',
-		'handover',
-		s_user_id.currval
-	);
-	
-INSERT INTO USERS (
-		USER_NAME,
-		USER_SURNAME,
-		USER_SECNAME,
-		USER_PHONE
-	)
-	VALUES (
-		'Николай',
+		'Администратор',
 		'Админов',
-		'Александрович',
+		'Администратович',
 		'8-916-675-66-58'
 	);
 	
-INSERT INTO ACCOUNTS (
+INSERT INTO ASU_USER.ACCOUNTS (
 		ACC_LOGIN,
 		ACC_PASSWORD,
 		ACC_ROLE,
@@ -75,11 +51,13 @@ INSERT INTO ACCOUNTS (
 	)
 	VALUES (
 		'admin',
-		'admin',
+		'21232f297a57a5a743894a0e4a801fc3',
 		'1',
-		s_user_id.currval
+		asu_user.s_user_id.currval
 	);
 
 COMMIT;
+
+
 PROMPT Работа скрипта успешно завершена;
 SPOOL OFF;
