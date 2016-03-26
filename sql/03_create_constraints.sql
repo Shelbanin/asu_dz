@@ -5,7 +5,7 @@ PROMPT Создание ограничений БД для АСУ ТП изго�
 
 
 PROMPT Создание ограничения C_ACC_LOGIN;
-ALTER TABLE ASU_USER.USERS
+ALTER TABLE ASU_USER.ACCOUNTS
   DROP CONSTRAINT C_ACC_LOGIN;
 ALTER TABLE ASU_USER.ACCOUNTS
   ADD (CONSTRAINT C_ACC_LOGIN UNIQUE(ACC_LOGIN));
