@@ -16,8 +16,13 @@ check_authorized();
 <body>
 <?php
 include("navigation/menu.php");
-include("navigation/orders_filters.php");
-include("content/orders/orders.php");
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $selected_filter = $_GET['filter'] ? $_GET['filter'] : 'docs';
+}
+
+include("navigation/filters/info/" . $selected_filter . ".php");
+include("content/information/show_information.php");
 include("navigation/footer.php");
 ?>
 </body>
