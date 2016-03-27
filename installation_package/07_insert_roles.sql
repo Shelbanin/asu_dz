@@ -4,7 +4,8 @@ PROMPT Группа: ИУ4-83;
 PROMPT Заполнение таблиц пользователей АСУ ТП изготовления RR-701-R-T;
 
 INSERT INTO ASU_USER.ROLES (
-    ROLE_ID ,ROLE_NAME
+    ROLE_ID,
+    ROLE_NAME
   )
   VALUES (
     1 ,
