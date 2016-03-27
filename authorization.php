@@ -1,18 +1,14 @@
 <?php
 require "conf/config.php";
-require "conf/console_log.php";
 require "sql_queries/authorization.php";
 
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $connect = OCILogon($db_user, $db_pass, $db);
+    $connect = connect_to_db();
 
     if (!$connect) {
-        $error = OCIError();
-        $msg = $error['message'];
-        console_log($error, $msg);
-        die();
+        show_err_msg();
     } else {
         $login = $_POST['login'];
         $pass = md5($_POST['password']);
