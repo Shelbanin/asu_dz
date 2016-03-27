@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$connect) {
         show_err_msg();
     } else {
-        $login = $_POST['login'];
+        $login = strtolower($_POST['login']);
         $pass = md5($_POST['password']);
 
         $query = OCIParse($connect, check_login($login, $pass));
