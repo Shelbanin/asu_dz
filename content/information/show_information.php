@@ -16,12 +16,12 @@
               $header = array(
                   '№',
                   'Название',
-                  'url' => 'Ссылка',
+                  'Ссылка',
                   'Описание'
               );
               $fields = array(
                   'DOC_NAME',
-                  'DOC_URL',
+                  'url' => 'DOC_URL',
                   'DOC_DESCRIPTION'
               );
           } else {
