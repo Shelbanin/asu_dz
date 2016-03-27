@@ -6,7 +6,7 @@ function render_table($header, $simple_header, $fields, $data) {
         render_order_header();
     }
 
-    $counter = 0;
+    $counter = 1;
     while(OCIFetch($data)) {
         render_row($fields, $data, $counter);
         $counter++;
@@ -42,11 +42,15 @@ function render_order_header() {
 }
 
 function render_row($fields, $row, $counter) {
-    $style = !(bool)$counter % 2 ? 'even' : 'odd';
+    $style = (bool)$counter % 2 ? 'even' : 'odd';
+
     echo "<tr class=" . $style . ">";
+    echo "<td>" . $counter . "</td>";
+
     foreach ($fields as $key => $value) {
         echo "<td>" . OCIResult($row, $value) . "</td>";
     }
+
     echo "</tr>";
 }
 ?>
