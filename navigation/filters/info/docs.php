@@ -1,6 +1,6 @@
 <div id="filters">
     <div class="left-block">
-        <form action="" method="GET">
+        <form action="" method="POST">
             <button class="selected" name="filter" value="docs">Документы</button>
             <button name="filter" value="operations">Операции</button>
         </form>

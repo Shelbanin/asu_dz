@@ -17,9 +17,7 @@ check_authorized();
 <?php
 include("navigation/menu.php");
 
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $selected_filter = $_GET['filter'] ? $_GET['filter'] : 'docs';
-}
+$selected_filter = $_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST['filter'] : 'docs';
 
 include("navigation/filters/info/" . $selected_filter . ".php");
 include("content/information/show_information.php");
