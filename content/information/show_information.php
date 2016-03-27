@@ -2,10 +2,6 @@
   <div class="tab">
     <table>
       <?php
-      require "../../conf/config.php";
-      require "../../sql_queries/information.php";
-      require "../../utils/render_tables.php";
-
       $connect = connect_to_db();
       if (!$connect) {
           show_err_msg();

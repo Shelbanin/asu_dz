@@ -1,5 +1,9 @@
 <?php
-require  "sessions.php";
+require "sessions.php";
+require "conf/config.php";
+require "sql_queries/information.php";
+require "utils/render_tables.php";
+
 
 check_authorized();
 ?>
