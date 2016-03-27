@@ -127,7 +127,7 @@ PROMPT Создание таблицы, содержащую информаци�
 DROP TABLE ASU_USER.OPERATION_TYPES;
 CREATE TABLE ASU_USER.OPERATION_TYPES (
   OTYP_ID NUMBER(10) NOT NULL,
-  OTYP_NAME VARCHAR2(20) NOT NULL
+  OTYP_NAME VARCHAR2(50) NOT NULL
   ) TABLESPACE USERS;
 PROMPT Создание таблицы успешно завершено;
 
