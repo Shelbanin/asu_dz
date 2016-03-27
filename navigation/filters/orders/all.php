@@ -14,7 +14,7 @@
 				<div class="add-text">
 					Добавить
 				</div>
-			<a>
+			</a>
 		</div>
 	</div>
 </div>
