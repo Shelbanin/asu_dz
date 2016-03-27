@@ -9,6 +9,7 @@
           $selected_filter = $_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST['filter'] : 'docs';
           $query = $selected_filter == 'docs' ? docs_query() : operations_query();
 
+          $query = OCIParse($connect, $query);
           OCIExecute($query, OCI_DEFAULT);
 
           if ($selected_filter == 'docs') {
