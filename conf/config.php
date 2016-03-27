@@ -15,4 +15,9 @@ function show_err_msg() {
     console_log($error, $msg);
     die();
 }
+
+function connection_close($connect) {
+    OCICommit($connect);
+    OCILogoff($connect);
+}
 ?>

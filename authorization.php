@@ -30,8 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         }
 
-        OCICommit($connect);
-        OCILogoff($connect);
+        connection_close($connect);
     }
 }
 
