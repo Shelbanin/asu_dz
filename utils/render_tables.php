@@ -9,7 +9,6 @@ function render_table($header, $simple_header, $fields, $data) {
     $counter = 1;
     while(OCIFetch($data)) {
         render_row($fields, $data, $counter);
-        echo $counter;
         $counter++;
     }
 }
