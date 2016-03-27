@@ -23,7 +23,6 @@
                   'Описание'
               );
               $fields = array(
-                  'DOC_ID',
                   'DOC_NAME',
                   'DOC_URL',
                   'DOC_DESCRIPTION'
@@ -36,7 +35,6 @@
                   'Описание'
               );
               $fields = array(
-                  'OPER_ID',
                   'OPER_NAME',
                   'OTYP_NAME',
                   'OPER_DESCRIPTION'
