@@ -1,6 +1,11 @@
 <?php
-session_start();
-$page = isset($_SESSION['authorized']) ? 'order.php' : 'login.php';
+require "sessions.php";
+
+if (check_session()) {
+    $page = is_admin() ? 'information.php' : 'orders.php';
+} else {
+    $page = 'login.php';
+}
 header("Location: $page");
 exit();
 ?>

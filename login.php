@@ -1,6 +1,7 @@
 <?php
-session_start();
-if (isset($_SESSION['authorized'])) {
+require  "sessions.php";
+
+if (check_session()) {
     header("Location: index.php");
 } else {
     require "content/login_page.php";

@@ -24,12 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $user = array(
                 'id' => OCIResult($query, 'ACC_ID'),
                 'login' => OCIResult($query, 'ACC_LOGIN'),
-                'role' => OCIResult($query, 'ACC_ROLE'),
+                'role' => OCIResult($query, 'ROLE_ABRIV'),
+                'role_name' => OCIResult($query, 'ROLE_NAME'),
                 'info' => OCIResult($query, 'ACC_INFO')
             );
 
             $_SESSION['authorized'] = true;
             $_SESSION['user'] = $user;
+
         }
 
         OCICommit($connect);

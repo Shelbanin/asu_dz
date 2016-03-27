@@ -16,7 +16,7 @@ check_authorized();
 <body>
 <?php
 include("navigation/menu.php");
-include("navigation/filters/orders/all.php");
+include("navigation/orders_filters.php");
 include("content/orders/orders.php");
 include("navigation/footer.php");
 ?>

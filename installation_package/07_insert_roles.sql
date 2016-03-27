@@ -5,20 +5,24 @@ PROMPT Заполнение таблиц пользователей АСУ ТП 
 
 INSERT INTO ASU_USER.ROLES (
     ROLE_ID,
-    ROLE_NAME
+    ROLE_NAME,
+    ROLE_ABRIV
   )
   VALUES (
     1 ,
-    'Администратор'
+    'Администратор',
+    'adm'
   );
 
 INSERT INTO ASU_USER.ROLES (
     ROLE_ID,
-    ROLE_NAME
+    ROLE_NAME,
+    ROLE_ABRIV
   )
   VALUES (
     2 ,
-    'Технолог'
+    'Технолог',
+    'teh'
   );
 
 COMMIT;
