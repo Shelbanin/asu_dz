@@ -1,9 +1,9 @@
 <div id="menu">
-	<nav>
-		<a href="order_in_progress.php">Р—Р°РєР°Р·С‹</a> 
-		<a href="employees.php">РЎРѕС‚СЂСѓРґРЅРёРєРё</a> 
-		<a href="statistic.php">РЎС‚Р°С‚РёСЃС‚РёРєР°</a>
-		<a href="information.php">РЎРїСЂР°РІРѕС‡РЅРёРє</a>
-		<a href="exit.php">Р’С‹С…РѕРґ</a>
-	</nav>
+    <nav>
+        <a href="order_in_progress.php">Заказы</a>
+        <a href="employees.php">Сотрудники</a>
+        <a href="statistic.php">Статистика</a>
+        <a href="information.php">Справочник</a>
+        <a href="exit.php">Выход</a>
+    </nav>
 </div>

@@ -1,8 +1,8 @@
 <div id="footer">
-	<div class="left-block">
-		РђРЎРЈ РўРџ RR-701-R-T В© 2016
-	</div>
-	<div class="right-block">
-		РђР»РµРєСЃР°РЅРґСЂ Р©РµР»Р±Р°РЅРёРЅ, РРЈ4-83
-	</div>
+    <div class="left-block">
+        АСУ ТП RR-701-R-T © 2016
+    </div>
+    <div class="right-block">
+        Александр Щелбанин, ИУ4-83
+    </div>
 </div>

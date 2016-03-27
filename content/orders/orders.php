@@ -1,26 +1,26 @@
 <div id="content">
-	<div class="tab">
+    <div class="tab">
         <table>
             <tr>
-                <th rowspan="2">в„–</th>
-                <th rowspan="2">ID Р·Р°РєР°Р·Р°</th>
-                <th rowspan="2">РљРѕР»РёС‡РµСЃС‚РІРѕ, С€С‚</th>
-                <th rowspan="2">РЎС‚Р°С‚СѓСЃ</th>
-                <th rowspan="2">РџСЂРѕРіСЂРµСЃСЃ, %</th>
-                <th colspan="2">Р”Р°С‚Р° РЅР°С‡Р°Р»Р°</th>
-                <th colspan="2">Р”Р°С‚Р° Р·Р°РІРµСЂС€РµРЅРёСЏ</th>
+                <th rowspan="2">№</th>
+                <th rowspan="2">ID заказа</th>
+                <th rowspan="2">Количество, шт</th>
+                <th rowspan="2">Статус</th>
+                <th rowspan="2">Прогресс, %</th>
+                <th colspan="2">Дата начала</th>
+                <th colspan="2">Дата завершения</th>
             </tr>
             <tr>
-                <th>РўР—</th>
-                <th>Р¤Р°РєС‚РёС‡РµСЃРєР°СЏ</th>
-                <th>РўР—</th>
-                <th>Р¤Р°РєС‚РёС‡РµСЃРєР°СЏ</th>
+                <th>ТЗ</th>
+                <th>Фактическая</th>
+                <th>ТЗ</th>
+                <th>Фактическая</th>
             </tr>
             <tr class="even">
                 <td>1</td>
                 <td>1352</td>
                 <td>100</td>
-                <td>РќРѕРІС‹Р№</td>
+                <td>Новый</td>
                 <td>-</td>
                 <td>05.04.2016</td>
                 <td>-</td>
@@ -31,7 +31,7 @@
                 <td>2</td>
                 <td>1364</td>
                 <td>150</td>
-                <td>Р’ РїСЂРѕС†РµСЃСЃРµ</td>
+                <td>В процессе</td>
                 <td>50</td>
                 <td>03.02.2016</td>
                 <td>03.02.2016</td>
@@ -42,7 +42,7 @@
                 <td>3</td>
                 <td>1314</td>
                 <td>50</td>
-                <td>Р—Р°РІРµСЂС€РµРЅ</td>
+                <td>Завершен</td>
                 <td>50</td>
                 <td>03.01.2016</td>
                 <td>03.01.2016</td>
@@ -50,5 +50,5 @@
                 <td>13.02.2016</td>
             </tr>
         </table>
-	</div>
+    </div>
 </div>

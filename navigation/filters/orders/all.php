@@ -1,20 +1,20 @@
 <div id="filters">
-	<div class="left-block">
-		<form action="">
-			<button class="selected">Р’СЃРµ</button>
-			<button>РќРѕРІС‹Рµ</button>
-			<button>Р’С‹РїРѕР»РЅСЏРµРјС‹Рµ</button>
-			<button>Р—Р°РІРµСЂС€РµРЅРЅС‹Рµ</button>
-		</form>
-	</div>
-	
-	<div class="right-block">
-		<div class="add-button">
-			<a href="add_order.php">
-				<div class="add-text">
-					Р”РѕР±Р°РІРёС‚СЊ
-				</div>
-			</a>
-		</div>
-	</div>
+    <div class="left-block">
+        <form action="">
+            <button class="selected">Все</button>
+            <button>Новые</button>
+            <button>Выполняемые</button>
+            <button>Завершенные</button>
+        </form>
+    </div>
+
+    <div class="right-block">
+        <div class="add-button">
+            <a href="add_order.php">
+                <div class="add-text">
+                    Добавить
+                </div>
+            </a>
+        </div>
+    </div>
 </div>

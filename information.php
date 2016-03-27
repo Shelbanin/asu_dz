@@ -10,12 +10,11 @@ check_authorized();
 
 <html>
 <head>
-    <title>–ê–°–£</title>
+    <title>¿—”</title>
     <link rel="stylesheet" href="static/style/style.css">
     <link rel="stylesheet" href="static/style/content.css">
     <link rel="stylesheet" href="static/style/filters.css">
     <script src="static/js/main-script.js"></script>
-    <meta charset="utf-8">
 </head>
 <body>
 <?php
