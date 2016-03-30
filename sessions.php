@@ -17,4 +17,9 @@ function check_authorized() {
     }
 }
 
+function logout() {
+    $_SESSION = array();
+    session_destroy();
+    header("Location: login.php");
+}
 ?>
