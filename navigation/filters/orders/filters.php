@@ -1,6 +1,6 @@
 <div id="filters">
     <div class="left-block">
-        <form action="">
+        <form action="" method="GET">
             <button class="<? echo $filters['all'] ?>">Все</button>
             <button class="<? echo $filters['new'] ?>">Новые</button>
             <button class="<? echo $filters['in_progress'] ?>">Выполняемые</button>
@@ -9,12 +9,8 @@
     </div>
 
     <div class="right-block">
-        <div class="add-button">
-            <a href="add_order.php">
-                <div class="add-text">
-                    Добавить
-                </div>
-            </a>
-        </div>
+        <form>
+            <button>Добавить</button>
+        </form>
     </div>
 </div>

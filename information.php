@@ -21,9 +21,8 @@ check_authorized();
 include("navigation/menu.php");
 
 $page_to_include = page_to_show('information', $_GET);
-
 if ($page_to_include['type'] == 'show') {
-    $selected_filter = $_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST['filter'] : 'docs';
+    $selected_filter = isset($_GET['filter']) ? $_GET['filter'] : 'docs'; echo $selected_filter;
     $filters[$_POST['filter']] = 'selected';
     include("navigation/filters/info/filters.php");
 }
