@@ -1,10 +1,10 @@
 <div id="filters">
     <div class="left-block">
         <form action="">
-            <button class="selected">Все</button>
-            <button>Новые</button>
-            <button>Выполняемые</button>
-            <button>Завершенные</button>
+            <button class="<? echo $filters['all'] ?>">Все</button>
+            <button class="<? echo $filters['new'] ?>">Новые</button>
+            <button class="<? echo $filters['in_progress'] ?>">Выполняемые</button>
+            <button class="<? echo $filters['done'] ?>">Завершенные</button>
         </form>
     </div>
 

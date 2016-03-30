@@ -22,7 +22,9 @@ include("navigation/menu.php");
 
 $selected_filter = $_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST['filter'] : 'docs';
 
-include("navigation/filters/info/" . $selected_filter . ".php");
+$filters[$_POST['filter']] = 'selected';
+
+include("navigation/filters/info/filters.php");
 include("content/information/show_information.php");
 include("navigation/footer.php");
 ?>
