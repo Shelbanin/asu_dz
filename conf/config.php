@@ -1,5 +1,5 @@
 <?php
-include "../utils/console_log.php";
+include "../utils/errors.php";
 
 function connect_to_db() {
     $db = "(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=alex-pc)(PORT=1521)))(CONNECT_DATA=(SID=ASUSH)))";

@@ -3,7 +3,7 @@ require "sessions.php";
 require "conf/config.php";
 require "sql_queries/information.php";
 require "utils/render_tables.php";
-
+require "utils/page_type.php";
 
 check_authorized();
 ?>
@@ -20,12 +20,18 @@ check_authorized();
 <?php
 include("navigation/menu.php");
 
+
 $selected_filter = $_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST['filter'] : 'docs';
 
 $filters[$_POST['filter']] = 'selected';
 
 include("navigation/filters/info/filters.php");
-include("content/information/show_information.php");
+$page_to_include = page_to_show('information', $_GET);
+if (in_array($page_to_include['type'], array('edit', 'delete'))) {
+    // TODO: GET DATA FOR EDIT/DELETE
+}
+
+include($page_to_include['path']);;
 include("navigation/footer.php");
 ?>
 </body>
