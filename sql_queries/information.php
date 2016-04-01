@@ -13,4 +13,11 @@ function operations_query() {
             JOIN operation_types ON oper_id = otyp_id
     ";
 }
+
+function operations_types_query() {
+    return "
+        SELECT otyp_id, otyp_name
+          FROM operation_types
+    ";
+}
 ?>
