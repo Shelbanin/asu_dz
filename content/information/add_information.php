@@ -1,26 +1,57 @@
 <?php
-$filter = str_replace('add_', '', $_GET['page']);
-$string ='';
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $data_to_insert = empty($_POST['docs']) ? $_POST['operations'] : $_POST['docs'];
+    $query = '';
 
-if ($filter == 'docs') {
-    $string = 'документа';
-} else {
-    $string = 'операции';
+    if (array_key_exists('url', $data_to_insert)) {
+        $query = insert_into_docs(
+            $data_to_insert['name'],
+            $data_to_insert['url'],
+            $data_to_insert['desc']
+        );
+    } else {
+        $query = insert_into_opers(
+            $data_to_insert['name'],
+            $data_to_insert['type'],
+            $data_to_insert['desc']
+        );
+    }
 
     $connect = connect_to_db();
 
     if (!$connect) {
         show_err_msg();
     } else {
-        $query = operations_types_query();
+        echo "cool";
+        echo $query;
         $query = OCIParse($connect, $query);
         OCIExecute($query, OCI_DEFAULT);
-
-        while(OCIFetch($query)) {
-            $combobox_data[OCIResult($query, 'OTYP_ID')] = OCIResult($query, 'OTYP_NAME');
-        }
-
         connection_close($connect);
+    }
+} else {
+    $filter = str_replace('add_', '', $_GET['page']);
+    $string = '';
+
+    if ($filter == 'docs') {
+        $string = 'документа';
+    } else {
+        $string = 'операции';
+
+        $connect = connect_to_db();
+
+        if (!$connect) {
+            show_err_msg();
+        } else {
+            $query = operations_types_query();
+            $query = OCIParse($connect, $query);
+            OCIExecute($query, OCI_DEFAULT);
+
+            while (OCIFetch($query)) {
+                $combobox_data[OCIResult($query, 'OTYP_ID')] = OCIResult($query, 'OTYP_NAME');
+            }
+
+            connection_close($connect);
+        }
     }
 }
 ?>
@@ -48,7 +79,7 @@ if ($filter == 'docs') {
             <? if ($filter == 'docs'): ?>
                 <input type="text" name="<? echo $filter?>[url]" maxlength="100" required>
             <? else: ?>
-                <select required>
+                <select name="<? echo $filter?>[type]" "required>
                     <option></option>
                     <? foreach ($combobox_data as $key => $value): ?>
                         <option value="<? echo $key ?>">

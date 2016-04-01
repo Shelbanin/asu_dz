@@ -20,4 +20,38 @@ function operations_types_query() {
           FROM operation_types
     ";
 }
+
+function insert_into_docs($name, $url, $desc) {
+    $query_insert = "
+        INSERT INTO documents (
+            doc_name,
+            doc_url,
+            doc_description
+          )
+          VALUES (
+            '" . $name . "',
+            '" . $url . "',
+            '" . $desc . "'
+          )
+    ";
+
+    return $query_insert;
+}
+
+function insert_into_opers($name, $type, $desc) {
+    $query_insert = "
+        INSERT INTO operations_info (
+            oper_name,
+            oper_type,
+            oper_description
+          )
+          VALUES (
+            '" . $name . "',
+            '" . $type . "',
+            '" . $desc . "'
+          )
+    ";
+
+    return $query_insert;
+}
 ?>
