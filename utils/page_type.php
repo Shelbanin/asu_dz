@@ -1,7 +1,15 @@
 <?php
 
 function page_to_show($parent, $get) {
-    $type = in_array($get['page'], array('add', 'edit', 'delete')) ? $get['page'] : 'show';
+    $type = 'show';
+
+    $available_type = array('add', 'delete', 'edit', 'show');
+    foreach ($available_type as $key => $value) {
+        if (strpos($_GET['page'], $value) !== false) {
+            $type = $value;
+        }
+    }
+
     $included_page = "content/" . $parent . "/" . $type . "_" . $parent . ".php";
 
     return array(

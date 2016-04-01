@@ -2,6 +2,75 @@
 	padding: 0 5px 0 5px;
 }
 
+#content .left-block {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 5px 0 5px 0;
+}
+
+#content .left-block p {
+    height: 30px;
+    margin: 0;
+    padding: 6px 0 6px 40px;
+    box-sizing: border-box;
+}
+
+#content .left-block p.desc {
+    height: 156px;
+}
+
+#content .left-block button, .right-block form input[type=submit] {
+    height: 26px;
+    width: 140px;
+    border: 1px solid #fff;
+    margin-right: 8px;
+    background-color: #207ea9;
+    float: right;
+    border-radius: 2px;
+    box-sizing: border-box;
+    padding: 3px 10px 3px 10px;
+    font-size: 14px;
+    color: #bae9ff;
+    cursor: pointer;
+}
+
+#content .right-block form input[type=submit] {
+    margin: 0;
+    float: left;
+}
+
+#content .left-block button:hover, .right-block form input[type=submit]:hover {
+    background-color: #045184;
+}
+
+#content .right-block {
+    float: right;
+    width: 50%;
+    box-sizing: border-box;
+    padding: 5px 0 5px 0;
+}
+
+#content .right-block form {
+    background-color: #ffffff;
+    padding-right: 40px;
+}
+
+#content .right-block form input[type=text], textarea, select {
+	background-color: #f6f6f6;
+    border: 1px solid #c6c6c6;
+    opacity: 0.9;
+    height: 24px;
+    margin: 3px 0 3px 0;
+    padding: 3px;
+    width: 100%;
+    resize: none;
+}
+
+#content .right-block form textarea {
+    height: 150px;
+}
+
 .tab {
 	padding: 5px;
 	box-sizing: border-box;

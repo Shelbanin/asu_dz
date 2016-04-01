@@ -1,3 +1,7 @@
+<?php
+$add_page = "add_" . $selected_filter;
+?>
+
 <div id="filters">
     <div class="left-block">
         <form action="" method="GET">
@@ -7,8 +11,8 @@
     </div>
 
     <div class="right-block">
-        <form>
-            <button>Добавить</button>
+        <form action="" method="GET">
+            <button name="page" value="<? echo $add_page ?>">Добавить</button>
         </form>
     </div>
 </div>

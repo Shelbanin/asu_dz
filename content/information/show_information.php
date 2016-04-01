@@ -6,7 +6,7 @@
       if (!$connect) {
           show_err_msg();
       } else {
-          $selected_filter = $_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST['filter'] : 'docs';
+          $selected_filter = isset($_GET['filter']) ? $_GET['filter'] : 'docs';
           $query = $selected_filter == 'docs' ? docs_query() : operations_query();
 
           $query = OCIParse($connect, $query);
