@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <div id="content">
-    <h3 align="center">Изменение записи (<? echo $string ?>) в справочнике</h3>
+    <h4 align="center">Изменение записи (<? echo $string ?>) в справочнике</h4>
     <div class = "left-block">
         <p>Название <? echo $string ?>:</p>
         <p>

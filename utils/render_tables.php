@@ -45,10 +45,11 @@ function render_row($fields, $row, $counter) {
     $style = (bool)($counter % 2) ? 'even' : 'odd';
 
     echo "<tr class=\"" . $style . "\">";
-    echo "<td>" . $counter . "</td>";
-
+    if ($counter !== true) {
+        echo "<td>" . $counter . "</td>";
+    }
     foreach ($fields as $key => $value) {
-        $field_value = OCIResult($row, $value);
+        $field_value = $row === false ? $value : OCIResult($row, $value);
         echo $key === 'actions' ? cell_with_actions($field_value) : cell_from_db($key, $field_value);
     }
 
