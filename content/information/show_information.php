@@ -30,7 +30,7 @@
               $header = array(
                   '№',
                   'Название',
-                  'Типо операции',
+                  'Тип операции',
                   'Описание',
                   'Действия'
               );
@@ -43,8 +43,8 @@
           }
 
           render_table($header, true, $fields, $query);
-          connection_close($connect);
       }
+      connection_close($connect);
       ?>
     </table>
   </div>

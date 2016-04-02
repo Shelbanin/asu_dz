@@ -26,10 +26,49 @@ if ($page_to_include['type'] == 'show') {
     $filters[$selected_filter] = 'selected';
     include("navigation/filters/info/filters.php");
 } else if (in_array($page_to_include['type'], array('edit', 'delete'))) {
-    // TODO: GET DATA FOR EDIT/DELETE
-} else {
+    $connect = connect_to_db();
+    if (!$connect) {
+        show_err_msg();
+    } else {
+        $type = isset($_GET['docs']) ? 'docs' : 'operations';
+        $id = $_GET[$type];
 
+        if ($id) {
+            $query = $type == 'docs' ? single_doc_query($id) : single_operation_query($id);
+            $query = OCIParse($connect, $query);
+            OCIExecute($query, OCI_DEFAULT);
+
+            $data_to_restore = array();
+            if(OCIFetch($query)) {
+                if ($type == 'docs') {
+                    $data_to_restore['id'] = OCIResult($query, 'DOC_ID');
+                    $data_to_restore['name'] = OCIResult($query, 'DOC_NAME');
+                    $data_to_restore['url'] = OCIResult($query, 'DOC_URL');
+                    $data_to_restore['desc'] = OCIResult($query, 'DOC_DESCRIPTION');
+                } else {
+                    $data_to_restore['id'] = OCIResult($query, 'OPER_ID');
+                    $data_to_restore['name'] = OCIResult($query, 'OPER_NAME');
+                    $data_to_restore['type'] = OCIResult($query, 'OPER_TYPE');
+                    $data_to_restore['desc'] = OCIResult($query, 'OPER_DESCRIPTION');
+                }
+            }
+
+            if (empty($data_to_restore)) {
+                connection_close($connect);
+                header("Location: information.php?filter=" . $type);
+                exit();
+                // TODO Сообщение об ошибке - не найдено такой записи
+            }
+        } else {
+            connection_close($connect);
+            header("Location: information.php?filter=" . $type);
+            exit();
+            // TODO Сообщение об ошибке - не указана запись
+        }
+    }
+    connection_close($connect);
 }
+
 include($page_to_include['path']);;
 
 include("navigation/footer.php");

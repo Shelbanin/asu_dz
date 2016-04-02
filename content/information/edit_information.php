@@ -1,22 +1,40 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $data_to_insert = empty($_POST['docs']) ? $_POST['operations'] : $_POST['docs'];
-    $query = '';
+    $filter = empty($_POST['docs']) ? 'operations' : 'docs';
+    $data_from_form = empty($_POST['docs']) ? $_POST['operations'] : $_POST['docs'];
+    $dtr = $data_to_restore;
 
-    if (array_key_exists('url', $data_to_insert)) {
-        $filter = 'docs';
-        $query = insert_into_docs(
-            $data_to_insert['name'],
-            $data_to_insert['url'],
-            $data_to_insert['desc']
-        );
+    $updated_fields = array();
+    $attributes_dict = array();
+    $attributes_dict['docs'] = array(
+        'name' => 'DOC_NAME',
+        'url' => 'DOC_URL',
+        'desc' => 'DOC_DESCRIPTION'
+    );
+    $attributes_dict['operations'] = array(
+        'name' => 'OPER_NAME',
+        'type' => 'OPER_TYPE',
+        'desc' => 'OPER_DESCRIPTION'
+    );
+
+    foreach ($data_from_form as $key => $value) {
+        $attribute_in_table = $attributes_dict[$filter][$key];
+
+        if ($value != $dtr[$key]) {
+            $updated_fields[$attribute_in_table] = $value;
+        }
+    }
+
+    if (empty($updated_fields)) {
+        header("Location: information.php?filter=" . $filter);
+        exit();
+        // TODO нЕчего обновлять
+    }
+
+    if ($filter == 'docs') {
+        $query = update_doc($updated_fields, $dtr['id']);
     } else {
-        $filter = 'operations';
-        $query = insert_into_opers(
-            $data_to_insert['name'],
-            $data_to_insert['type'],
-            $data_to_insert['desc']
-        );
+        $query = update_operation($updated_fields, $dtr['id']);
     }
 
     $connect = connect_to_db();
@@ -31,9 +49,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     header("Location: information.php?filter=" . $filter);
     exit();
-    // TODO Статус добавления
+    // TODO Статус изменения
 } else {
-    $filter = str_replace('add_', '', $_GET['page']);
+    $data = $data_to_restore;
+    $filter = $type;
     $string = '';
 
     if ($filter == 'docs') {
@@ -60,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <div id="content">
-    <h3 align="center">Добавление новой записи (<? echo $string ?>) в справочник</h3>
+    <h3 align="center">Изменение записи (<? echo $string ?>) в справочнике</h3>
     <div class = "left-block">
         <p>Название <? echo $string ?>:</p>
         <p>
@@ -79,20 +98,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
     <div class="right-block">
         <form action="" method="POST">
-            <input type="text" name="<? echo $filter?>[name]" maxlength="25" required>
+            <input type="text" name="<? echo $filter?>[name]" value="<? echo $data['name'] ?>" maxlength="25" required>
             <? if ($filter == 'docs'): ?>
-                <input type="text" name="<? echo $filter?>[url]" maxlength="100" required>
+                <input type="text" name="<? echo $filter?>[url]" value="<? echo $data['url'] ?>" maxlength="100" required>
             <? else: ?>
                 <select name="<? echo $filter?>[type]" "required>
-                <option></option>
                 <? foreach ($combobox_data as $key => $value): ?>
-                    <option value="<? echo $key ?>">
+                    <option value="<? echo $key ?>" <? if ($key==$data['type']): echo 'selected'; endif;?>>
                         <? echo $value ?>
                     </option>
                 <? endforeach; ?>
                 </select>
             <? endif; ?>
-            <textarea name="<? echo $filter?>[desc]" maxlength="4000" required></textarea>
+            <textarea name="<? echo $filter?>[desc]" maxlength="4000" required><? echo $data['desc'] ?></textarea>
             <input type="submit" value="Принять">
         </form>
     </div>

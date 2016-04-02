@@ -6,11 +6,27 @@ function docs_query() {
     ";
 }
 
+function single_doc_query($id) {
+    $docs_query = docs_query();
+
+    return $docs_query . "
+          WHERE doc_id='" . $id . "'
+    ";
+}
+
 function operations_query() {
     return "
-        SELECT oper_id, oper_name, otyp_name, oper_description
+        SELECT oper_id, oper_name, oper_type, otyp_name, oper_description
           FROM operations_info
-            JOIN operation_types ON oper_id = otyp_id
+            JOIN operation_types ON oper_type = otyp_id
+    ";
+}
+
+function single_operation_query($id) {
+    $oper_query = operations_query();
+
+    return $oper_query . "
+          WHERE oper_id='" . $id . "'
     ";
 }
 
@@ -53,5 +69,41 @@ function insert_into_opers($name, $type, $desc) {
     ";
 
     return $query_insert;
+}
+
+function update_doc($data, $_id) {
+    $update = "
+        UPDATE documents SET
+    ";
+
+    $_to_update = "";
+    foreach ($data as $key => $value) {
+        $_to_update .= ($key . "='" . $value . "',");
+    }
+    $_to_update = substr($_to_update, 0, -1);
+
+    $condition = "
+          WHERE doc_id='" . $_id . "'
+    ";
+
+    return $update . $_to_update . $condition;
+}
+
+function update_operation($data, $_id) {
+    $update = "
+        UPDATE operations_info SET
+    ";
+
+    $_to_update = "";
+    foreach ($data as $key => $value) {
+        $_to_update .= ($key . "='" . $value . "',");
+    }
+    $_to_update = substr($_to_update, 0, -1);
+
+    $condition = "
+          WHERE oper_id='" . $_id . "'
+    ";
+
+    return $update . $_to_update . $condition;
 }
 ?>

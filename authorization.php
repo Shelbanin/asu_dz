@@ -29,10 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['user'] = $user;
 
         }
-
-        connection_close($connect);
     }
+
+    connection_close($connect);
 }
 
 header("Location: index.php");
+exit();
 ?>
