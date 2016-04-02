@@ -4,12 +4,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = '';
 
     if (array_key_exists('url', $data_to_insert)) {
+        $filter = 'docs';
         $query = insert_into_docs(
             $data_to_insert['name'],
             $data_to_insert['url'],
             $data_to_insert['desc']
         );
     } else {
+        $filter = 'operations';
         $query = insert_into_opers(
             $data_to_insert['name'],
             $data_to_insert['type'],
@@ -22,12 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$connect) {
         show_err_msg();
     } else {
-        echo "cool";
-        echo $query;
         $query = OCIParse($connect, $query);
         OCIExecute($query, OCI_DEFAULT);
         connection_close($connect);
     }
+
+    header("Location: information.php?filter=" . $filter);
 } else {
     $filter = str_replace('add_', '', $_GET['page']);
     $string = '';
