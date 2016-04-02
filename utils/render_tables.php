@@ -24,19 +24,19 @@ function render_header($header) {
 function render_order_header() {
     echo '
         <tr>
-            <th rowspan="2">в„–</th>
-            <th rowspan="2">ID Р·Р°РєР°Р·Р°</th>
-            <th rowspan="2">РљРѕР»РёС‡РµСЃС‚РІРѕ, С€С‚</th>
-            <th rowspan="2">РЎС‚Р°С‚СѓСЃ</th>
-            <th rowspan="2">РџСЂРѕРіСЂРµСЃСЃ, %</th>
-            <th colspan="2">Р”Р°С‚Р° РЅР°С‡Р°Р»Р°</th>
-            <th colspan="2">Р”Р°С‚Р° Р·Р°РІРµСЂС€РµРЅРёСЏ</th>
+            <th rowspan="2">№</th>
+            <th rowspan="2">ID заказа</th>
+            <th rowspan="2">Количество, шт</th>
+            <th rowspan="2">Статус</th>
+            <th rowspan="2">Прогресс, %</th>
+            <th colspan="2">Дата начала</th>
+            <th colspan="2">Дата завершения</th>
         </tr>
         <tr>
-            <th>РўР—</th>
-            <th>Р¤Р°РєС‚РёС‡РµСЃРєР°СЏ</th>
-            <th>РўР—</th>
-            <th>Р¤Р°РєС‚РёС‡РµСЃРєР°СЏ</th>
+            <th>ТЗ</th>
+            <th>Фактическая</th>
+            <th>ТЗ</th>
+            <th>Фактическая</th>
         </tr>
     ';
 }
@@ -49,17 +49,33 @@ function render_row($fields, $row, $counter) {
 
     foreach ($fields as $key => $value) {
         $field_value = OCIResult($row, $value);
-
-        $open_a = '';
-        $close_a = '';
-        if ($key === 'url') {
-            $open_a = "<a href=\"" . $field_value . "\" target=\"_blank\">";
-            $close_a = "</a>";
-        }
-
-        echo "<td>" . $open_a . $field_value . $close_a . "</td>";
+        echo $key === 'actions' ? cell_with_actions($field_value) : cell_from_db($key, $field_value);
     }
 
     echo "</tr>";
+}
+
+function cell_from_db($cell_key, $cell_value) {
+    $open_a = '';
+    $close_a = '';
+    if ($cell_key === 'url') {
+        $open_a = "<a href=\"" . $cell_value . "\" target=\"_blank\">";
+        $close_a = "</a>";
+    }
+
+    $cell_tags = "<td>" . $open_a . $cell_value . $close_a . "</td>";
+
+    return $cell_tags;
+}
+
+function cell_with_actions($_id) {
+    $url = $_SERVER['PATH_INFO'];
+    $selected_filter = isset($_GET['filter']) ? $_GET['filter'] : 'docs';
+
+    $edit = "<a href=\"" . $url . "?page=edit&" . $selected_filter . "=" . $_id . "\">Изменить</a>";
+    $delimiter = " / ";
+    $delete = "<a href=\"" . $url . "?page=delete&" . $selected_filter . "=" . $_id . "\">Удалить</a>";
+
+    return "<td>" . $edit . $delimiter . $delete . "</td>";
 }
 ?>

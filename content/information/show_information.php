@@ -17,24 +17,28 @@
                   '№',
                   'Название',
                   'Ссылка',
-                  'Описание'
+                  'Описание',
+                  'Действия'
               );
               $fields = array(
                   'DOC_NAME',
                   'url' => 'DOC_URL',
-                  'DOC_DESCRIPTION'
+                  'DOC_DESCRIPTION',
+                  'actions' => 'DOC_ID'
               );
           } else {
               $header = array(
                   '№',
                   'Название',
                   'Типо операции',
-                  'Описание'
+                  'Описание',
+                  'Действия'
               );
               $fields = array(
                   'OPER_NAME',
                   'OTYP_NAME',
-                  'OPER_DESCRIPTION'
+                  'OPER_DESCRIPTION',
+                  'actions' => 'OPER_ID'
               );
           }
 
