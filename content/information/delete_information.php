@@ -1,5 +1,24 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $filter = isset($_POST['docs']) ? 'docs' : 'operations';
+    $_id = $_POST[$filter];
 
+    $connect = connect_to_db();
+    if (!$connect) {
+        show_err_msg();
+    } else {
+        $query = delete_row($filter, $_id);
+        $query = OCIParse($connect, $query);
+        OCIExecute($query, OCI_DEFAULT);
+        // TODO DELETE SUCCESS
+    }
+    connection_close($connect);
+    header("Location: information.php?filter=" . $filter);
+    exit();
+} else {
+    $filter = isset($_GET['docs']) ? 'docs' : 'operations';
+    $_id = $_GET[$filter];
+}
 ?>
 
 <div id="content">
@@ -29,5 +48,17 @@
         render_row($row, false, true);
         ?>
     </table>
+    <div id="delete-buttons">
+        <form action="" method="GET">
+            <button name="filter" value="<? echo $filter ?>">
+                Отмена
+            </button>
+        </form>
+        <form action="" method="POST">
+            <button name="<? echo $filter ?>" value="<? echo $_id ?>">
+                Удалить
+            </button>
+        </form>
+    </div>
 </div>
 

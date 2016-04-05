@@ -106,4 +106,21 @@ function update_operation($data, $_id) {
 
     return $update . $_to_update . $condition;
 }
+
+function delete_row($type, $_id) {
+    if ($type == 'docs') {
+        $table_name = 'documents';
+        $column = 'doc_id';
+    } else {
+        $table_name = 'operations_info';
+        $column = 'oper_id';
+    }
+
+    $query = "
+        DELETE FROM " . $table_name . "
+          WHERE " . $column . "='" . $_id . "'
+    ";
+
+    return $query;
+}
 ?>

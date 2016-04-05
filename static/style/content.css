@@ -20,7 +20,8 @@
     height: 156px;
 }
 
-#content .left-block button, .right-block form input[type=submit] {
+#content .left-block button, .right-block form input[type=submit],
+#content #delete-buttons button{
     height: 26px;
     width: 140px;
     border: 1px solid #fff;
@@ -29,7 +30,7 @@
     float: right;
     border-radius: 2px;
     box-sizing: border-box;
-    padding: 3px 10px 3px 10px;
+    padding: auto;
     font-size: 14px;
     color: #bae9ff;
     cursor: pointer;
@@ -40,7 +41,8 @@
     float: left;
 }
 
-#content .left-block button:hover, .right-block form input[type=submit]:hover {
+#content .left-block button:hover, .right-block form input[type=submit]:hover,
+#content #delete-buttons button:hover{
     background-color: #045184;
 }
 
@@ -69,6 +71,18 @@
 
 #content .right-block form textarea {
     height: 150px;
+}
+
+#content #delete-buttons {
+    width: 296px;
+    height: 26px;
+    position: relative;
+    margin: 5px auto 5px;
+}
+
+#content #delete-buttons button {
+    margin: 0 4px 0 4px;
+    float: left;
 }
 
 .tab {
