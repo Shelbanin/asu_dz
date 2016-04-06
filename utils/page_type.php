@@ -5,7 +5,7 @@ function page_to_show($parent, $get) {
 
     $available_type = array('add', 'delete', 'edit', 'show');
     foreach ($available_type as $key => $value) {
-        if (strpos($_GET['page'], $value) !== false) {
+        if (strpos($get['page'], $value) !== false) {
             $type = $value;
         }
     }
