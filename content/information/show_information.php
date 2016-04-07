@@ -1,5 +1,9 @@
+<?php
+$permissions = get_permissions($_SESSION['user']['role'], 'info');
+?>
 <div id="content">
   <div class="tab">
+    <? if ($permissions['view']): ?>
     <table>
       <?php
       $connect = connect_to_db();
@@ -42,10 +46,14 @@
               );
           }
 
-          render_table($header, true, $fields, $query);
+          $permissions = get_permissions($_SESSION['user']['role'], 'info');
+          render_table($header, true, $fields, $query, $permissions, $selected_filter);
       }
       connection_close($connect);
       ?>
     </table>
+    <? else: ?>
+      <h3 align="center">Ќедостаточно прав дл€ доступа к данной странице!</h3>
+    <? endif; ?>
   </div>
 </div>

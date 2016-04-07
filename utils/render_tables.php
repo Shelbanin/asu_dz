@@ -1,5 +1,5 @@
 <?php
-function render_table($header, $simple_header, $fields, $data) {
+function render_table($header, $simple_header, $fields, $data, $permissions, $filter) {
     if ($simple_header) {
         render_header($header);
     } else {
@@ -8,7 +8,7 @@ function render_table($header, $simple_header, $fields, $data) {
 
     $counter = 1;
     while(OCIFetch($data)) {
-        render_row($fields, $data, $counter);
+        render_row($fields, $data, $counter, $permissions, $filter);
         $counter++;
     }
 }
@@ -41,7 +41,7 @@ function render_order_header() {
     ';
 }
 
-function render_row($fields, $row, $counter) {
+function render_row($fields, $row, $counter, $permissions, $filter) {
     $style = (bool)($counter % 2) ? 'even' : 'odd';
 
     echo "<tr class=\"" . $style . "\">";
@@ -50,7 +50,7 @@ function render_row($fields, $row, $counter) {
     }
     foreach ($fields as $key => $value) {
         $field_value = $row === false ? $value : OCIResult($row, $value);
-        echo $key === 'actions' ? cell_with_actions($field_value) : cell_from_db($key, $field_value);
+        echo $key === 'actions' ? cell_with_actions($field_value, $permissions, $filter) : cell_from_db($key, $field_value);
     }
 
     echo "</tr>";
@@ -69,13 +69,22 @@ function cell_from_db($cell_key, $cell_value) {
     return $cell_tags;
 }
 
-function cell_with_actions($_id) {
+function cell_with_actions($_id, $permissions, $filter) {
     $url = $_SERVER['PATH_INFO'];
-    $selected_filter = isset($_GET['filter']) ? $_GET['filter'] : 'docs';
 
-    $edit = "<a href=\"" . $url . "?page=edit&" . $selected_filter . "=" . $_id . "\">Изменить</a>";
-    $delimiter = " / ";
-    $delete = "<a href=\"" . $url . "?page=delete&" . $selected_filter . "=" . $_id . "\">Удалить</a>";
+    $edit = '';
+    $delimiter = '';
+    $delete = '';
+
+    if ($permissions['edit']) {
+        $edit = "<a href=\"" . $url . "?page=edit&" . $filter . "=" . $_id . "\">Изменить</a>";
+    }
+    if ($permissions['delete']) {
+        $delete = "<a href=\"" . $url . "?page=delete&" . $filter . "=" . $_id . "\">Удалить</a>";
+    }
+    if ($permissions['edit'] and $permissions['delete']) {
+        $delimiter = " / ";
+    }
 
     return "<td>" . $edit . $delimiter . $delete . "</td>";
 }

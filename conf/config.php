@@ -20,4 +20,51 @@ function connection_close($connect) {
     OCICommit($connect);
     OCILogoff($connect);
 }
+
+function get_permissions($user_type, $page) {
+    $permission_dict = array(
+        'adm' => array(
+            'orders' => array(
+                'create' => false,
+                'view' => true,
+                'edit' => false,
+                'delete' => true
+            ),
+            'users' => array(
+                'create' => true,
+                'view' => true,
+                'edit' => true,
+                'delete' => true
+            ),
+            'info' => array(
+                'create' => true,
+                'view' => true,
+                'edit' => true,
+                'delete' => true
+            )
+        ),
+        'teh' => array(
+            'orders' => array(
+                'create' => true,
+                'view' => true,
+                'edit' => true,
+                'delete' => false
+            ),
+            'users' => array(
+                'create' => false,
+                'view' => true,
+                'edit' => true,
+                'delete' => false
+            ),
+            'info' => array(
+                'create' => true,
+                'view' => true,
+                'edit' => true,
+                'delete' => true
+            )
+        )
+    );
+
+    return $permission_dict[$user_type][$page];
+}
 ?>
