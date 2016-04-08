@@ -53,7 +53,7 @@ function get_permissions($user_type, $page) {
             'users' => array(
                 'create' => false,
                 'view' => true,
-                'edit' => true,
+                'edit' => false,
                 'delete' => false
             ),
             'info' => array(
