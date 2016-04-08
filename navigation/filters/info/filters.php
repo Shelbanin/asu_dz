@@ -1,5 +1,6 @@
 <?php
 $add_page = "add_" . $selected_filter;
+$permission = get_permissions($_SESSION['user']['role'], 'info');
 ?>
 
 <div id="filters">
@@ -11,8 +12,10 @@ $add_page = "add_" . $selected_filter;
     </div>
 
     <div class="right-block">
-        <form action="" method="GET">
-            <button name="page" value="<? echo $add_page ?>">Добавить</button>
-        </form>
+        <? if ($permission['create']): ?>
+            <form action="" method="GET">
+                <button name="page" value="<? echo $add_page ?>">Добавить</button>
+            </form>
+        <? endif; ?>
     </div>
 </div>

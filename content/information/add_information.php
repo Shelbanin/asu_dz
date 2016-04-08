@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="" method="POST">
             <input type="text" name="<? echo $filter?>[name]" maxlength="25" required>
             <? if ($filter == 'docs'): ?>
-                <input type="text" name="<? echo $filter?>[url]" maxlength="100" required>
+                <input type="text" name="<? echo $filter?>[url]" maxlength="100" required pattern="^http://[A-Za-z]+.[A-Za-z]+$">
             <? else: ?>
                 <select name="<? echo $filter?>[type]" "required>
                 <option></option>

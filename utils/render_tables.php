@@ -41,7 +41,7 @@ function render_order_header() {
     ';
 }
 
-function render_row($fields, $row, $counter, $permissions, $filter) {
+function render_row($fields, $row, $counter, $permissions=false, $filter='') {
     $style = (bool)($counter % 2) ? 'even' : 'odd';
 
     echo "<tr class=\"" . $style . "\">";

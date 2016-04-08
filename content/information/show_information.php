@@ -53,7 +53,7 @@ $permissions = get_permissions($_SESSION['user']['role'], 'info');
       ?>
     </table>
     <? else: ?>
-      <h3 align="center">Ќедостаточно прав дл€ доступа к данной странице!</h3>
+      <h4 align="center">Ќедостаточно прав дл€ доступа к данной странице!</h4>
     <? endif; ?>
   </div>
 </div>
