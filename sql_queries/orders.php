@@ -32,4 +32,14 @@ function insert_into_orders($data) {
     ";
     return $query_to_insert;
 }
+
+function tehs_query() {
+    return "
+        SELECT acc_id, role_name, user_name, user_surname, user_secname
+          FROM accounts
+            JOIN users ON acc_info=user_id
+            JOIN roles ON acc_role=role_id
+          WHERE role_abriv='teh'
+    ";
+}
 ?>
