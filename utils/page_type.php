@@ -10,6 +10,10 @@ function page_to_show($parent, $get) {
         }
     }
 
+    if ($type == 'show' and isset($get['id'])) {
+        $type.= '_single';
+    }
+
     $included_page = "content/" . $parent . "/" . $type . "_" . $parent . ".php";
 
     return array(
