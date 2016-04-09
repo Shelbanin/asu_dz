@@ -20,5 +20,3 @@ CREATE OR REPLACE FUNCTION ASU_USER.PROGRESS (
 
 PROMPT Работа скрипта успешно завершена;
 SPOOL OFF;
-
-

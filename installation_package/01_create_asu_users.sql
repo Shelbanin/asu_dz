@@ -4,14 +4,14 @@ PROMPT Группа: ИУ4-83;
 PROMPT Создание пользователей АСУ ТП изготовления RR-701-R-T;
 
 
-PROMPT Создание пользователя с привелегиями DBA;
+PROMPT Создание пользователя с привилегиями DBA;
 DROP USER ASU_DBA;
 CREATE USER ASU_DBA PROFILE DEFAULT
     IDENTIFIED BY handover DEFAULT TABLESPACE USERS 
     ACCOUNT UNLOCK;
 GRANT CONNECT TO ASU_DBA;
 GRANT DBA TO ASU_DBA;
-PROMPT Создание пользователя с привелегиями DBA;
+PROMPT Создание пользователя с привилегиями DBA;
 
 PROMPT Создание роли пользователя АСУ;
 DROP ROLE USER_ROLE;
