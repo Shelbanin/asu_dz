@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $dates[$key] = implode('.', array_reverse($splitted_date));
     }
 
-    $order['owner'] = $_SESSION['user']['id'];
+    $order['owner'] = $_SESSION['user']['info'];
 
     $connect = connect_to_db();
 
