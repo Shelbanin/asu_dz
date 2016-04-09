@@ -50,7 +50,8 @@ function render_row($fields, $row, $counter, $permissions=false, $filter='') {
     }
     foreach ($fields as $key => $value) {
         $field_value = $row === false ? $value : OCIResult($row, $value);
-        echo $key === 'actions' ? cell_with_actions($field_value, $permissions, $filter) : cell_from_db($key, $field_value);
+        echo $key === 'actions' ? cell_with_actions($field_value, $permissions, $filter) :
+                                  cell_from_db($key, $field_value);
     }
 
     echo "</tr>";
@@ -62,6 +63,10 @@ function cell_from_db($cell_key, $cell_value) {
     if ($cell_key === 'url') {
         $open_a = "<a href=\"" . $cell_value . "\" target=\"_blank\">";
         $close_a = "</a>";
+    }elseif ($cell_key === 'drilldown') {
+        $url = $_SERVER['PATH_INFO'];
+        $open_a = "<a href=\"" . $url . "?page=show&id=" . $cell_value . "\">";
+        $close_a = "</a>";
     }
 
     $cell_tags = "<td>" . $open_a . $cell_value . $close_a . "</td>";
@@ -69,7 +74,7 @@ function cell_from_db($cell_key, $cell_value) {
     return $cell_tags;
 }
 
-function cell_with_actions($_id, $permissions, $filter) {
+function cell_with_actions($id, $permissions, $filter) {
     $url = $_SERVER['PATH_INFO'];
 
     $edit = '';
@@ -77,10 +82,10 @@ function cell_with_actions($_id, $permissions, $filter) {
     $delete = '';
 
     if ($permissions['edit']) {
-        $edit = "<a href=\"" . $url . "?page=edit&" . $filter . "=" . $_id . "\">Изменить</a>";
+        $edit = "<a href=\"" . $url . "?page=edit&" . $filter . "=" . $id . "\">Изменить</a>";
     }
     if ($permissions['delete']) {
-        $delete = "<a href=\"" . $url . "?page=delete&" . $filter . "=" . $_id . "\">Удалить</a>";
+        $delete = "<a href=\"" . $url . "?page=delete&" . $filter . "=" . $id . "\">Удалить</a>";
     }
     if ($permissions['edit'] and $permissions['delete']) {
         $delimiter = " / ";
