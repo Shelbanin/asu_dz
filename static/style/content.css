@@ -1,3 +1,7 @@
+h4, h5 {
+    margin: 10px;
+}
+
 #content {
 	padding: 0 5px 0 5px;
 }
@@ -9,6 +13,13 @@
     padding: 5px 0 5px 0;
 }
 
+#content .drilldown-left {
+    float: left;
+    width: 35%;
+    box-sizing: border-box;
+    padding-top: 5px;
+}
+
 #content .left-block p {
     height: 30px;
     margin: 0;
@@ -16,8 +27,20 @@
     box-sizing: border-box;
 }
 
+#content .central-block p {
+    width: 100%;
+    font-size: 14px;
+    margin:  0 5px 0 5px;
+    height: auto;
+}
+
 #content .left-block p.desc {
     height: 156px;
+}
+
+#content .drilldown-left p, .drilldown-right p {
+    margin: 5px;
+    font-size: 14px;
 }
 
 #content .left-block button, .right-block form input[type=submit],
@@ -53,6 +76,13 @@
     padding: 5px 0 5px 0;
 }
 
+#content .drilldown-right {
+    float: right;
+    width: 65%;
+    box-sizing: border-box;
+    padding-top: 5px;
+}
+
 #content .right-block form {
     background-color: #ffffff;
     padding-right: 40px;
@@ -71,6 +101,13 @@
 
 #content .right-block form textarea {
     height: 150px;
+}
+
+#content .central-block {
+    float: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 5px;
 }
 
 #content #delete-buttons {

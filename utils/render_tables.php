@@ -21,6 +21,17 @@ function render_header($header) {
     echo "</tr>";
 }
 
+function render_order_drilldown_table($header, $fields, $data)
+{
+    render_header($header);
+    $counter = 10;
+
+    foreach ($fields as $key => $value) {
+        $counter = render_colspan_row($key, $value, $data, $counter);
+    }
+
+}
+
 function render_order_header() {
     echo '
         <tr>
@@ -57,13 +68,25 @@ function render_row($fields, $row, $counter, $permissions=false, $filter='') {
     echo "</tr>";
 }
 
+function render_colspan_row($colspan_field, $fields, $data, $counter) {
+    echo "<tr class=\"odd\">";
+    echo "<td></td>";
+    echo "<td class=\"even\" colspan=\"2\"><b>" . OCIResult($data, $colspan_field) . "</b></td>";
+    echo "</tr>";
+    foreach ($fields as $key => $value) {
+        render_row(array($key, $value), $data, $counter+1);
+        $counter += 10;
+    }
+    return $counter;
+}
+
 function cell_from_db($cell_key, $cell_value) {
     $open_a = '';
     $close_a = '';
     if ($cell_key === 'url') {
         $open_a = "<a href=\"" . $cell_value . "\" target=\"_blank\">";
         $close_a = "</a>";
-    }elseif ($cell_key === 'drilldown') {
+    } elseif ($cell_key === 'drilldown') {
         $url = $_SERVER['PATH_INFO'];
         $open_a = "<a href=\"" . $url . "?page=show&id=" . $cell_value . "\">";
         $close_a = "</a>";
