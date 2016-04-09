@@ -19,9 +19,9 @@ check_authorized();
 <?php
 include("navigation/menu.php");
 
-$page_to_include = page_to_show('users', $_GET);
+$page_to_include = page_to_show('orders', $_GET);
 if ($page_to_include['type'] == 'show') {
-    include("navigation/filters/users/filters.php");
+    include("navigation/filters/orders/filters.php");
 } else if (in_array($page_to_include['type'], array('edit', 'delete'))) {
     $connect = connect_to_db();
     if (!$connect) {
@@ -47,20 +47,19 @@ if ($page_to_include['type'] == 'show') {
 
             if (empty($data_to_restore)) {
                 connection_close($connect);
-                header("Location: users.php");
+                header("Location: orders.php");
                 exit();
                 // TODO Сообщение об ошибке - не найдено такой записи
             }
         } else {
             connection_close($connect);
-            header("Location: users.php");
+            header("Location: orders.php");
             exit();
             // TODO Сообщение об ошибке - не указана запись
         }
     }
     connection_close($connect);
 }
-
 include($page_to_include['path']);;
 
 include("navigation/footer.php");

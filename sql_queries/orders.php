@@ -27,7 +27,7 @@ function insert_into_orders($data) {
 		  s_date_id.currval,
 		  '" . $data['owner'] . "',
 		  '" . $data['performer'] . "',
-		  '" . $data['description'] . "'
+		  '" . $data['desc'] . "'
 	    )
     ";
     return $query_to_insert;
