@@ -21,6 +21,8 @@ include("navigation/menu.php");
 
 $page_to_include = page_to_show('orders', $_GET);
 if ($page_to_include['type'] == 'show') {
+    $selected_filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+    $filters[$selected_filter] = 'selected';
     include("navigation/filters/orders/filters.php");
 } else if (in_array($page_to_include['type'], array('edit', 'delete'))) {
     $connect = connect_to_db();
