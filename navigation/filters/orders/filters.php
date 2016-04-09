@@ -1,3 +1,8 @@
+<?php
+$permission = get_permissions($_SESSION['user']['role'], 'orders');
+?>
+
+
 <div id="filters">
     <div class="left-block">
         <form action="" method="GET">
@@ -9,8 +14,10 @@
     </div>
 
     <div class="right-block">
-        <form>
-            <button>Добавить</button>
-        </form>
+        <? if ($permission['create']): ?>
+            <form action="" method="GET">
+                <button name="page" value="add">Добавить</button>
+            </form>
+        <? endif; ?>
     </div>
 </div>
