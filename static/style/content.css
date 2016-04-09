@@ -58,7 +58,7 @@
     padding-right: 40px;
 }
 
-#content .right-block form input[type=text], textarea, select {
+#content .right-block form input[type=text], input[type=date], textarea, select {
 	background-color: #f6f6f6;
     border: 1px solid #c6c6c6;
     opacity: 0.9;
