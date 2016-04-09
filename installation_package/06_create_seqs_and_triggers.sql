@@ -168,7 +168,7 @@ PROMPT Создание триггера успешно завершено;
 PROMPT Создание последовательности для ORDERS.ORD_ID;
 DROP SEQUENCE ASU_USER.S_ORD_ID;
 CREATE SEQUENCE ASU_USER.S_ORD_ID
-  INCREMENT BY 1 START WITH 1
+  INCREMENT BY 1 START WITH 1000
   MAXVALUE 10000 MINVALUE 1 NOCYCLE
   NOCACHE NOORDER;
 PROMPT Создание последовательности успешно завершено;
