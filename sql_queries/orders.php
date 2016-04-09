@@ -53,14 +53,13 @@ function show_orders_query($filter) {
     }
 
     $query = "
-        SELECT (
+        SELECT
             ord_id, ord_amount, ord_progress,
             st_name, st_abriv,
             date_start_spec, date_start_fact,
             date_end_spec, date_end_fact
-          )
           FROM orders
-            JOIN statuses ON ord_status=st_id
+            JOIN status ON ord_status=st_id
             JOIN dates ON ord_dates=date_id
     ";
 
