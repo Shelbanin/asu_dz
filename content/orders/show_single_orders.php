@@ -1,5 +1,9 @@
 <?php
 $id = $_GET['id'];
+$edit_path = $_SERVER['PATH_INFO'] . "?page=edit&order=" . $id;
+$disabled = true;
+$permissions = get_permissions($_SESSION['user']['role'], 'orders');
+
 $connect = connect_to_db();
 if (!$connect) {
     show_err_msg();
@@ -15,6 +19,7 @@ if (!$connect) {
         $data['ord_progress'] = OCIResult($query, 'ORD_PROGRESS');
         $data['ord_description'] = OCIResult($query, 'ORD_DESCRIPTION');
         $data['st_name'] = OCIResult($query, 'ST_NAME');
+        $data['owner_id'] = OCIResult($query, 'OWNER_ID');
         $data['owner'] = (
             OCIResult($query, 'OWNER_SURNAME') . " " .
             OCIResult($query, 'OWNER_NAME') . " " .
@@ -25,15 +30,22 @@ if (!$connect) {
             OCIResult($query, 'PERF_NAME') . " " .
             OCIResult($query, 'PERF_SECNAME') . " "
         );
+        $data['performer_id'] = OCIResult($query, 'PERF_ID');
     }
 }
 connection_close($connect);
+
+if ($permissions['edit'] and
+    $data['owner_id'] == $_SESSION['user']['info'] or
+    $data['performer_id'] == $_SESSION['user']['info']) {
+    $disabled = false;
+}
 ?>
 
 <div id="content">
     <h4 align="center">Заказ № <? echo $id ?></h4>
     <div class = "drilldown-left">
-        <p><b>Статус: </b><? echo $data['ord_amount'] ?></p>
+        <p><b>Статус: </b><? echo $data['st_name'] ?></p>
         <p><b>Прогресс: </b><? echo $data['ord_progress'] ?></p>
         <p><b>Количество: </b><? echo $data['ord_amount'] ?></p>
     </div>
@@ -85,6 +97,13 @@ connection_close($connect);
         }
         connection_close($connect);
         ?>
-        </table>
     </table>
+    <div id="delete-buttons">
+        <form action="" method="get">
+            <button>Назад</button>
+            <a href="<? echo $edit_path ?>" <? if($disabled): echo "disabled"; endif; ?>>
+                Редактировать
+            </a>
+        </form>
+    </div>
 </div>

@@ -71,9 +71,11 @@ function top_drilldown_order_query($id) {
         SELECT
             ord_id, ord_amount, ord_progress,
             ord_description, ord_info, st_name,
+            ownr.user_id OWNER_ID,
             ownr.user_surname OWNER_SURNAME,
             ownr.user_name OWNER_NAME,
             ownr.user_secname OWNER_SECNAME,
+            perf.user_id PERF_ID,
             perf.user_surname PERF_SURNAME,
             perf.user_name PERF_NAME,
             perf.user_secname PERF_SECNAME
@@ -140,5 +142,199 @@ function tp_drilldown_table_query($id) {
                JOIN operations_info ctype ON heap.ctrl_type=ctype.oper_id
     ";
     return $query;
+}
+
+function operations_info_query() {
+    return "
+        SELECT oper_id, oper_name, oper_type
+            FROM operations_info
+    ";
+}
+function statuses_query() {
+    return "
+        SELECT st_id, st_name
+            FROM status
+    ";
+}
+
+function edit_top_info_query($id) {
+    return "
+        SELECT ord_amount, ord_status, ord_info, ord_dates
+            FROM orders
+            WHERE ord_id='". $id . "'
+    ";
+}
+
+function tp_info_query($id) {
+    $query = "
+      SELECT
+          oinf_preparation, oinf_assembly, oinf_control,
+          prep_otype,
+          prep_unboxing, prep_unbox_amount,
+          prep_control, prep_ctrl_amount,
+          asmbl_otype,
+          asmbl_placing, asmbl_placed_amount,
+          asmbl_soldering, asmbl_sldr_amount,
+          asmbl_washing, asmbl_wshd_amount,
+          asmbl_packaging, asmbl_pkg_amount,
+          ctrl_otype,
+          ctrl_type, ctrl_amount
+        FROM
+          order_info
+          JOIN preparation ON oinf_preparation=prep_id
+          JOIN assembly ON oinf_assembly=asmbl_id
+          JOIN control ON oinf_control=ctrl_id
+        WHERE
+          oinf_id='" . $id . "'
+    ";
+    return $query;
+}
+
+function tp_update_prep_query($id, $data) {
+    $opers = array_keys($data);
+    $update_query = "
+        UPDATE preparation SET
+            prep_unboxing='" . $opers[0] . "',
+            prep_unbox_amount='" . $data[$opers[0]] . "',
+            prep_control='" . $opers[1] . "',
+            prep_ctrl_amount='" . $data[$opers[1]] . "'
+          WHERE prep_id='" . $id . "'
+    ";
+    return $update_query;
+}
+
+function tp_update_asmbl_query($id, $data) {
+    $opers = array_keys($data);
+    $update_query = "
+        UPDATE assembly SET
+            asmbl_placing='" . $opers[0] . "',
+            asmbl_placed_amount='" . $data[$opers[0]] . "',
+            asmbl_soldering='" . $opers[1] . "',
+            asmbl_sldr_amount='" . $data[$opers[1]] . "'
+            asmbl_washing='" . $opers[2] . "',
+            asmbl_wshd_amount='" . $data[$opers[2]] . "',
+            asmbl_packaging='" . $opers[3] . "',
+            asmbl_pkg_amount='" . $data[$opers[3]] . "'
+          WHERE asmbl_id='" . $id . "'
+    ";
+    return $update_query;
+}
+
+function tp_update_ctrl_query($id, $data) {
+    $opers = array_keys($data);
+    $update_query = "
+        UPDATE control SET
+            ctrl_type='" . $opers[0] . "',
+            ctrl_amount='" . $data[$opers[0]] . "'
+          WHERE ctrl_id='" . $id . "'
+    ";
+    return $update_query;
+}
+
+function progress_update_query($id, $data) {
+    $params = implode(',', $data);
+    $update_query = "
+        UPDATE orders SET
+            ord_progress=progress(" . $params . ")
+          WHERE ord_id='" . $id . "'
+    ";
+    return $update_query;
+}
+
+function insert_date_query($id, $type, $date) {
+    return "
+        UPDATE dates SET
+            date_" . $type . "_fact='" . $date . "'
+          WHERE date_id='" . $id . "'
+    ";
+}
+
+function update_status_query($id, $status) {
+    return "
+        UPDATE orders SET
+            ord_status='" . $status . "'
+          WHERE ord_id='" . $id . "'
+    ";
+}
+
+function tp_insert_prep_query($data) {
+    $opers = array_keys($data);
+    return "
+        INSERT INTO preparation (
+            prep_unboxing,
+            prep_unbox_amount,
+            prep_control,
+            prep_ctrl_amount
+          )
+          VALUES (
+            " . $opers[0] . ",
+            " . $data[$opers[0]] . ",
+            " . $opers[1] . ",
+            " . $data[$opers[1]] . "
+          )
+    ";
+}
+
+function tp_insert_asmbl_query($data) {
+    $opers = array_keys($data);
+    return "
+        INSERT INTO assembly (
+            asmbl_placing,
+            asmbl_placed_amount,
+            asmbl_soldering,
+            asmbl_sldr_amount,
+            asmbl_washing,
+            asmbl_wshd_amount,
+            asmbl_packaging,
+            asmbl_pkg_amount
+          )
+          VALUES (
+            " . $opers[0] . ",
+            " . $data[$opers[0]] . ",
+            " . $opers[1] . ",
+            " . $data[$opers[1]] . ",
+            " . $opers[2] . ",
+            " . $data[$opers[2]] . ",
+            " . $opers[3] . ",
+            " . $data[$opers[3]] . "
+          )
+    ";
+}
+
+function tp_insert_ctrl_query($data) {
+    $opers = array_keys($data);
+    return "
+        INSERT INTO control (
+            ctrl_type,
+            ctrl_amount
+          )
+          VALUES (
+            " . $opers[0] . ",
+            " . $data[$opers[0]] . "
+          )
+    ";
+}
+
+function tp_insert_order_info_query() {
+    return "
+        INSERT INTO order_info (
+            oinf_preparation,
+            oinf_assembly,
+            oinf_control
+          )
+          VALUES (
+            s_prep_id.currval,
+            s_asmbl_id.currval,
+            s_ctrl_id.currval
+          )
+    ";
+}
+
+function tp_update_order_info_query($id) {
+    return "
+        UPDATE orders SET
+            ord_info=s_oinf_id.currval
+          WHERE ord_id='" . $id . "'
+    ";
 }
 ?>

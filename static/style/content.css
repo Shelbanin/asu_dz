@@ -10,7 +10,7 @@ h4, h5 {
     float: left;
     width: 50%;
     box-sizing: border-box;
-    padding: 5px 0 5px 0;
+    padding: 5px 0 5px 40px;
 }
 
 #content .drilldown-left {
@@ -23,7 +23,7 @@ h4, h5 {
 #content .left-block p {
     height: 30px;
     margin: 0;
-    padding: 6px 0 6px 40px;
+    padding: 6px 0 6px 0;
     box-sizing: border-box;
 }
 
@@ -37,7 +37,7 @@ h4, h5 {
 }
 
 #content .left-block p.desc {
-    height: 156px;
+    height: 157px;
 }
 
 #content .drilldown-left p, .drilldown-right p {
@@ -46,7 +46,7 @@ h4, h5 {
 }
 
 #content .left-block button, .right-block form input[type=submit],
-#content #delete-buttons button, #delete-buttons a {
+#content #delete-buttons button, #delete-buttons a, #content .left-block a, .submit{
     height: 26px;
     width: 140px;
     border: 1px solid #fff;
@@ -70,16 +70,22 @@ h4, h5 {
     text-decoration: none;
     padding-left: 22px;
     padding-top: 5px;
+}
 
+#content .left-block a {
+    text-decoration: none;
+    padding-left: 45px;
+    padding-top: 5px;
 }
 
 #content #delete-buttons a[disabled] {
     background-color: #bae9ff;
     pointer-events: none;
+    color: #207ea9;
 }
 
 #content .left-block button:hover, .right-block input[type=submit]:hover,
-#content #delete-buttons button:hover, #delete-buttons a:hover {
+#content #delete-buttons button:hover, #delete-buttons a:hover, #content .left-block a:hover {
     background-color: #045184;
 }
 
@@ -102,11 +108,11 @@ h4, h5 {
     padding-right: 40px;
 }
 
-#content .right-block input[type=text], input[type=date], textarea, select {
+#content .right-block input[type=text], input[type=number], input[type=date], textarea, select {
 	background-color: #f6f6f6;
     border: 1px solid #c6c6c6;
     opacity: 0.9;
-    height: 24px;
+    height: 25px;
     margin: 3px 0 3px 0;
     padding: 3px;
     width: 100%;

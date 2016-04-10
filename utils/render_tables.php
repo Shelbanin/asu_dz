@@ -13,12 +13,11 @@ function render_table($header, $simple_header, $fields, $data, $permissions, $fi
     }
 }
 
-function render_header($header, $permissions) {
+function render_header($header, $permissions=false) {
     echo "<tr>";
     foreach ($header as $key => $value) {
         if ($key === 'actions') {
             if (!($permissions['edit'] and $permissions['delete'])) {
-                echo "1 ";
                 continue;
             }
         }
@@ -59,7 +58,7 @@ function render_order_header() {
 }
 
 function render_row($fields, $row, $counter, $permissions=false, $filter='') {
-    $style = (bool)($counter % 2) ? 'even' : 'odd';
+    $style = (bool)($counter % 2) ? 'odd' : 'even';
 
     echo "<tr class=\"" . $style . "\">";
     if ($counter !== true) {
@@ -76,11 +75,10 @@ function render_row($fields, $row, $counter, $permissions=false, $filter='') {
 
 function render_colspan_row($colspan_field, $fields, $data, $counter) {
     echo "<tr class=\"odd\">";
-    echo "<td></td>";
-    echo "<td class=\"even\" colspan=\"2\"><b>" . OCIResult($data, $colspan_field) . "</b></td>";
+    echo "<td class=\"even\" colspan=\"3\"><b>" . OCIResult($data, $colspan_field) . "</b></td>";
     echo "</tr>";
     foreach ($fields as $key => $value) {
-        render_row(array($key, $value), $data, $counter+1);
+        render_row(array($key, $value), $data, $counter);
         $counter += 10;
     }
     return $counter;
