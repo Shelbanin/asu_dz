@@ -46,7 +46,7 @@ h4, h5 {
 }
 
 #content .left-block button, .right-block form input[type=submit],
-#content #delete-buttons button{
+#content #delete-buttons button, #delete-buttons a {
     height: 26px;
     width: 140px;
     border: 1px solid #fff;
@@ -61,13 +61,25 @@ h4, h5 {
     cursor: pointer;
 }
 
-#content .right-block form input[type=submit] {
+#content .right-block input[type=submit] {
     margin: 0;
     float: left;
 }
 
-#content .left-block button:hover, .right-block form input[type=submit]:hover,
-#content #delete-buttons button:hover{
+#content #delete-buttons a {
+    text-decoration: none;
+    padding-left: 22px;
+    padding-top: 5px;
+
+}
+
+#content #delete-buttons a[disabled] {
+    background-color: #bae9ff;
+    pointer-events: none;
+}
+
+#content .left-block button:hover, .right-block input[type=submit]:hover,
+#content #delete-buttons button:hover, #delete-buttons a:hover {
     background-color: #045184;
 }
 
@@ -90,7 +102,7 @@ h4, h5 {
     padding-right: 40px;
 }
 
-#content .right-block form input[type=text], input[type=date], textarea, select {
+#content .right-block input[type=text], input[type=date], textarea, select {
 	background-color: #f6f6f6;
     border: 1px solid #c6c6c6;
     opacity: 0.9;
@@ -101,7 +113,7 @@ h4, h5 {
     resize: none;
 }
 
-#content .right-block form textarea {
+#content .right-block textarea {
     height: 150px;
 }
 
