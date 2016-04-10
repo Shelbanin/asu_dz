@@ -14,7 +14,7 @@ CREATE OR REPLACE FUNCTION ASU_USER.PROGRESS (
     progress := 100 * (prep_unbox + prep_ctrl +
                        asmbl_placing + asmbl_sold + asmbl_wsh +
                        asmbl_pkg + control) / (7 * amount);
-    return progress;
+    return ROUND(progress, 2);
   end;
 /
 
