@@ -23,7 +23,7 @@ $permissions = get_permissions($_SESSION['user']['role'], 'users');
                         'Имя',
                         'Отчество',
                         'Телефон',
-                        'Действия'
+                        'actions' => 'Действия'
                     );
                     $fields = array(
                         'ACC_LOGIN',

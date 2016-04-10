@@ -22,7 +22,7 @@ $permissions = get_permissions($_SESSION['user']['role'], 'info');
                   'Название',
                   'Ссылка',
                   'Описание',
-                  'Действия'
+                  'actions' => 'Действия'
               );
               $fields = array(
                   'DOC_NAME',
@@ -36,7 +36,7 @@ $permissions = get_permissions($_SESSION['user']['role'], 'info');
                   'Название',
                   'Тип операции',
                   'Описание',
-                  'Действия'
+                  'actions' => 'Действия'
               );
               $fields = array(
                   'OPER_NAME',

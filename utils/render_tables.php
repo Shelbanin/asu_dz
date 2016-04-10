@@ -1,7 +1,7 @@
 <?php
 function render_table($header, $simple_header, $fields, $data, $permissions, $filter) {
     if ($simple_header) {
-        render_header($header);
+        render_header($header, $permissions);
     } else {
         render_order_header();
     }
@@ -13,9 +13,15 @@ function render_table($header, $simple_header, $fields, $data, $permissions, $fi
     }
 }
 
-function render_header($header) {
+function render_header($header, $permissions) {
     echo "<tr>";
     foreach ($header as $key => $value) {
+        if ($key === 'actions') {
+            if (!($permissions['edit'] and $permissions['delete'])) {
+                echo "1 ";
+                continue;
+            }
+        }
         echo "<th>" . $value . "</th>";
     }
     echo "</tr>";
@@ -114,6 +120,12 @@ function cell_with_actions($id, $permissions, $filter) {
         $delimiter = " / ";
     }
 
-    return "<td>" . $edit . $delimiter . $delete . "</td>";
+    $cell = $edit . $delimiter . $delete;
+
+    if (!$cell) {
+        return '';
+    }
+
+    return "<td>" . $cell . "</td>";
 }
 ?>
