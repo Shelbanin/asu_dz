@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($info['status'] == 1 and $status == 2) {
                 $query = insert_date_query($info_to_restore['dates_id'], 'start', date('d.m.Y'));
             } else if ($info['status'] == 2 and $status == 3) {
-                $query = insert_date_query($info_to_restore['dates_id'], 'start', date('d.m.Y'));
+                $query = insert_date_query($info_to_restore['dates_id'], 'end', date('d.m.Y'));
             }
             $query = OCIParse($connect, $query);
             OCIExecute($query, OCI_DEFAULT);

@@ -210,7 +210,7 @@ function tp_update_asmbl_query($id, $data) {
             asmbl_placing='" . $opers[0] . "',
             asmbl_placed_amount='" . $data[$opers[0]] . "',
             asmbl_soldering='" . $opers[1] . "',
-            asmbl_sldr_amount='" . $data[$opers[1]] . "'
+            asmbl_sldr_amount='" . $data[$opers[1]] . "',
             asmbl_washing='" . $opers[2] . "',
             asmbl_wshd_amount='" . $data[$opers[2]] . "',
             asmbl_packaging='" . $opers[3] . "',
