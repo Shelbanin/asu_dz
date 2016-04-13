@@ -46,7 +46,7 @@ if ($permissions['edit'] and
     <h4 align="center">Заказ № <? echo $id ?></h4>
     <div class = "drilldown-left">
         <p><b>Статус: </b><? echo $data['st_name'] ?></p>
-        <p><b>Прогресс: </b><? echo $data['ord_progress'] ?></p>
+        <p><b>Прогресс: </b><? echo $data['ord_progress'] ?>%</p>
         <p><b>Количество: </b><? echo $data['ord_amount'] ?></p>
     </div>
     <div class = "drilldown-right">
