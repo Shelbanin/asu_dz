@@ -67,4 +67,22 @@ function get_permissions($user_type, $page) {
 
     return $permission_dict[$user_type][$page];
 }
+
+function get_tp_fields() {
+    return array(
+        'PREP' => array(
+            'PREP_UNBOXING' => 'PREP_UNBOX_AMOUNT',
+            'PREP_CONTROL' => 'PREP_CTRL_AMOUNT'
+        ),
+        'ASSEMBLY' => array(
+            'ASMBL_PLACING' => 'ASMBL_PLACED_AMOUNT',
+            'ASMBL_SOLDERING' => 'ASMBL_SLDR_AMOUNT',
+            'ASMBL_WASHING' => 'ASMBL_WSHD_AMOUNT',
+            'ASMBL_PACKING' => 'ASMBL_PKG_AMOUNT'
+        ),
+        'CONTROL' => array(
+            'CTRL_TYPE' => 'CTRL_AMOUNT'
+        )
+    );
+}
 ?>

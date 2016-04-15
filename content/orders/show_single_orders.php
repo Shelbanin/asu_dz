@@ -67,7 +67,6 @@ if ($permissions['edit'] and
             $query = tp_drilldown_table_query($data['ord_info']);
             $query = OCIParse($connect, $query);
             OCIExecute($query, OCI_DEFAULT);
-            $data = array();
 
             $header = array(
                 '№',
@@ -75,21 +74,7 @@ if ($permissions['edit'] and
                 'Прогресс, шт'
             );
 
-            $fields = array(
-                'PREP' => array(
-                    'PREP_UNBOXING' => 'PREP_UNBOX_AMOUNT',
-                    'PREP_CONTROL' => 'PREP_CTRL_AMOUNT'
-                ),
-                'ASSEMBLY' => array(
-                    'ASMBL_PLACING' => 'ASMBL_PLACED_AMOUNT',
-                    'ASMBL_SOLDERING' => 'ASMBL_SLDR_AMOUNT',
-                    'ASMBL_WASHING' => 'ASMBL_WSHD_AMOUNT',
-                    'ASMBL_PACKING' => 'ASMBL_PKG_AMOUNT'
-                ),
-                'CONTROL' => array(
-                    'CTRL_TYPE' => 'CTRL_AMOUNT'
-                )
-            );
+            $fields = get_tp_fields();
 
             if (OCIFetch($query)) {
                 render_order_drilldown_table($header, $fields, $query);
@@ -98,12 +83,13 @@ if ($permissions['edit'] and
         connection_close($connect);
         ?>
     </table>
-    <div id="delete-buttons">
+    <div id="delete-buttons" style="width: 444px;">
         <form action="" method="get">
-            <button>Назад</button>
+            <button name="filter" value="all">Назад</button>
             <a href="<? echo $edit_path ?>" <? if($disabled): echo "disabled"; endif; ?>>
                 Редактировать
             </a>
+            <a href="pdf_report.php?order=<? echo $id ?>" target="_blank" style="padding-left: 34px;">Сохранить</a>
         </form>
     </div>
 </div>

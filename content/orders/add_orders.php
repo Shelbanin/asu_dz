@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <p>Ответственный за выполнение:</p>
         <p class="desc">Описание заказа: </p>
         <form action="" method="GET">
-            <button name="filter" value="<? echo $filter ?>">
+            <button name="filter" value="all">
                 Отмена
             </button>
         </form>
