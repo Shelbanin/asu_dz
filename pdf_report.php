@@ -39,11 +39,12 @@ if (!$connect) {
         $tp_data = array();
         if (OCIFetch($query)) {
             foreach ($fields as $oper_type => $opers) {
-                $tp_data[OCIResult($query, $oper_type)] = array();
+                $oper_type_value = OCIResult($query, $oper_type);
+                $tp_data[$oper_type_value] = array();
                 $operartions = array_keys($opers);
 
                 foreach ($operartions as $value) {
-                    array_push($tp_data, OCIResult($query, $value));
+                    array_push($tp_data[$oper_type_value], OCIResult($query, $value));
                 }
             }
         }
@@ -53,7 +54,7 @@ if (!$connect) {
         exit();
     }
 
-    //generate_report(1,1);
+    generate_report($tp_data, $order_info);
 }
 connection_close($connect);
 ?>
