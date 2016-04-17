@@ -2,7 +2,7 @@
 function generate_report($tp_data, $stamp_data) {
     $pdf = new FPDF();
     $pdf->Open();
-    $pdf->SetTitle('order 1331');
+    $pdf->SetTitle('Strip chart');
     $pdf->SetAuthor($_SESSION['user']['acc_login']);
     $pdf->AddFont(
         'TimesNewRomanPSMT',
